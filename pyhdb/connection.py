@@ -62,8 +62,36 @@ class Connection(object):
     def __repr__(self):
         return '<Hana connection host=%s port=%s user=%s>' % (self.host, self.port, self.user)
 
+#    def _open_socket_and<RETIRED>_init_protocoll(self):
+#        ## Old implementation, retired!!
+#        self._socket = socket.create_connection((self.host, self.port), self._timeout)
+#
+#        # Initialization Handshake
+#        self._socket.sendall(INITIALIZATION_BYTES)
+#
+#        response = self._socket.recv(8)
+#        if len(response) != 8:
+#            raise Exception("Connection failed")
+#
+#        self.product_version = version_struct.unpack(response[0:3])
+#        self.protocol_version = version_struct.unpack_from(response[3:8])
+
     def _open_socket_and_init_protocoll(self):
-        self._socket = socket.create_connection((self.host, self.port), self._timeout)
+        # CREATE SOCKET
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        sock.settimeout(10)
+
+        # SSL Context
+        context = ssl.SSLContext(ssl.PROTOCOL_SSLv23)
+        # context.options |= ssl.OP_NO_TLSv1 | ssl.OP_NO_TLSv1_1  # optional
+        context.verify_mode = ssl.CERT_NONE
+        context.set_default_verify_paths()
+
+        # WRAP SOCKET
+        self._socket = context.wrap_socket(sock, server_hostname=self.host)
+
+        # self._socket = wrappedSocket.create_connection((self.host, self.port), self._timeout)
+        self._socket.connect((self.host, self.port))
 
         # Initialization Handshake
         self._socket.sendall(INITIALIZATION_BYTES)

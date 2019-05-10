@@ -282,3 +282,8 @@ ToDos
 
   * SAML
   * Kerberos
+
+
+Notes:
+
+This is a fork version of SAP/PyHDB. Updated by Nuo Li (nuo.li@sap.com).
