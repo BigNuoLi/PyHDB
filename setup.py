@@ -1,4 +1,4 @@
-# Copyright 2014, 2015 SAP SE.
+# Copyright 2014, 2015, 2019 SAP SE.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -32,9 +32,11 @@ setup(
     name="pyhdb",
     version=get_version(),
     license="Apache License Version 2.0",
-    url="https://github.com/SAP/pyhdb",
+    url="https://github.com/BigNuoLi/PyHDB",
     author="Christoph Heer",
     author_email="christoph.heer@sap.com",
+    forkedby="Nuo Li",
+    forkedby_email="nuo.li@sap.com",
     description="SAP HANA Database Client for Python",
     include_package_data=True,
     long_description=get_long_description(),
