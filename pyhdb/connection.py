@@ -18,6 +18,7 @@ import socket
 import struct
 import threading
 import logging
+import ssl
 ###
 from pyhdb.auth import AuthManager
 from pyhdb.cursor import Cursor
