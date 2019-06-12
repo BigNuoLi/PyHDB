@@ -31,7 +31,7 @@ def test_PROC_ADD2(connection, procedure_add2_fixture):
 
     sql_to_prepare = 'call PYHDB_PROC_ADD2 (?, ?, ?, ?)'
     params = [1, 2, None, None]
-    params = {'A':2, 'B':5, 'C':None, 'D': None}
+    #params = {'A':2, 'B':5, 'C':None, 'D': None}
     psid = cursor.prepare(sql_to_prepare)
     ps = cursor.get_prepared_statement(psid)
     cursor.execute_prepared(ps, [params])
