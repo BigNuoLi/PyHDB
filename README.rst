@@ -194,7 +194,7 @@ The script shall call the stored procedure PROC_ADD2 (source below):
  .. code-block:: pycon
 
     >>> sql_to_prepare = 'call PROC_ADD2 (?, ?, ?, ?)'
-    >>> params = {'A':2, 'B':5, 'C':None, 'D': None}
+    >>> params = [2, 5, None, None]
     >>> psid = cursor.prepare(sql_to_prepare)
     >>> ps = cursor.get_prepared_statement(psid)
     >>> cursor.execute_prepared(ps, [params])
